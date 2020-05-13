@@ -3,19 +3,12 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "include/menue.h"
 
 using namespace std;
 
-bool ende = false;
 
-struct ARBEITSPAKET
-{
-    string datum;
-    string fach;
-    int minuten;
-};
-vector<ARBEITSPAKET> Arbeitspakete;
-void menue();
+
 void liesArbeitspaketeEin();
 ARBEITSPAKET eingabeArbeitspaket();
 void speichereArbeitspaket(ARBEITSPAKET paket);
@@ -26,39 +19,18 @@ string getXMLContent(string line, string tagName, int n);
 int summe_minuten = 0;
 int main()
 {
+    struct ARBEITSPAKET
+{
+    string datum;
+    string fach;
+    int minuten;
+};
+vector<ARBEITSPAKET> Arbeitspakete;
+
     menue();
     return 0;
 }
 
-void menue()
-{
-    cout << "Hallo" << endl;
-    ende = false;
-    int auswahl;
-    do
-    {
-        cout << "was moechten sie tun?\n 1 = werte nach Datum aus\n 2 = werte nach fach aus \n 3 = gib Paket ein \n alles andere = ende" << endl;
-        cin >> auswahl;
-        switch (auswahl)
-        {
-        case 1:
-            liesArbeitspaketeEin();
-            werteNachDatumAus("2020/05/06");
-            break;
-        case 2:
-            liesArbeitspaketeEin();
-            werteNachFachAus();
-            break;
-        case 3:
-            speichereArbeitspaket(eingabeArbeitspaket());
-            break;
-        default:
-            cout << "Ende";
-            ende = true;
-            break;
-        }
-    } while (ende == false);
-}
 
 ARBEITSPAKET eingabeArbeitspaket()
 {
@@ -112,35 +84,7 @@ string getXMLContent(string line, string tagName, int n)
     return content;
 }
 
-void liesArbeitspaketeEin()
-{
-    Arbeitspakete.clear();
-    string data;
-    string inhalt;
-    fstream datei;
-    datei.open("Arbeitspakete.xml", ios::in);
-    if (datei.good())
-    {
-        datei >> data;
-        inhalt = getXMLContent(data, "xml", 1);
-    }
-    datei.close();
-    int i = 1;
-    do
-    {
-        ARBEITSPAKET paket;
-        data = getXMLContent(inhalt, "data", i);
-        if (data != "")
-        {
-            paket.datum = getXMLContent(data, "datum", 1);
-            paket.fach = getXMLContent(data, "fach", 1);
-            // stoi für umwandlung zu int
-            paket.minuten = stoi(getXMLContent(data, "minuten", 1));
-            Arbeitspakete.push_back(paket);
-        }
-        i++;
-    } while (data != "");
-}
+
 
 void werteNachDatumAus(string datum = "")
 {
