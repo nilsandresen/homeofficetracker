@@ -1,7 +1,16 @@
 #include "include/liesArbeitspaketeEin.h"
 
-void liesArbeitspaketeEin()
+template <class T>
+void liesArbeitspaketeEin(T Arbeitspakete)
 {
+
+    struct ARBEITSPAKET
+    {
+        string datum;
+        string fach;
+        int minuten;
+    };
+    ARBEITSPAKET paket;
     // Arbeitspakete.clear();
     string data;
     string inhalt;
@@ -16,7 +25,6 @@ void liesArbeitspaketeEin()
     int i = 1;
     do
     {
-        ARBEITSPAKET paket;
         data = getXMLContent(inhalt, "data", i);
         if (data != "")
         {

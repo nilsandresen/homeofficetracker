@@ -3,8 +3,13 @@
 
 #include <iostream>
 #include "liesArbeitspaketeEin.h"
+#include "werteNachDatumAus.h"
+#include "werteNachFachAus.h"
+#include "speichereArbeitspaket.h"
+#include "eingabeArbeitspaket.h"
 using namespace std;
 
-void menue();
+template <class T>
+void menue(T Arbeitspakete);
 
 #endif

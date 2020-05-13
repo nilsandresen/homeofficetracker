@@ -1,5 +1,7 @@
 #include "include/menue.h"
-void menue()
+
+template <class T>
+void menue(T Arbeitspakete)
 {
     cout << "Hallo" << endl;
     bool ende = false;
@@ -11,15 +13,15 @@ void menue()
         switch (auswahl)
         {
         case 1:
-            liesArbeitspaketeEin();
-            werteNachDatumAus("2020/05/06");
+            liesArbeitspaketeEin(Arbeitspakete);
+            werteNachDatumAus(Arbeitspakete);
             break;
         case 2:
             liesArbeitspaketeEin();
-            werteNachFachAus();
+            werteNachFachAus(Arbeitspakete);
             break;
         case 3:
-            speichereArbeitspaket(eingabeArbeitspaket());
+            speichereArbeitspaket(eingabeArbeitspaket(Arbeitspakete));
             break;
         default:
             cout << "Ende";

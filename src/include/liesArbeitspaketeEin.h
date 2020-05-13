@@ -3,8 +3,12 @@
 
 #include <string>
 #include <fstream>
+
+#include "getXMLContent.h"
+
 using namespace std;
 
-void liesArbeitspaketeEin();
+template <class T>
+void liesArbeitspaketeEin(T paket);
 
 #endif
