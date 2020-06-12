@@ -26,7 +26,6 @@ string getXMLContent(string line, string tagName, int n);
 int summe_minuten = 0;
 int main()
 {
-    menue();
     return 0;
 }
 
